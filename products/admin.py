@@ -27,7 +27,7 @@ class ReviewInLine(admin.ModelAdmin):
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
 
-    list_display = '__all__'
+    list_display = ('title', 'draft', 'created_at')
     list_filter = ('category', 'created_at', 'draft',)
 
 
