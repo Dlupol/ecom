@@ -28,7 +28,7 @@ class ReviewInLine(admin.ModelAdmin):
 class ProductAdmin(admin.ModelAdmin):
 
     list_display = '__all__'
-    list_filter = ('category', 'year')
+    list_filter = ('category', 'created_at', 'draft',)
 
 
 @admin.register(Review)
@@ -41,7 +41,7 @@ class ReviewAdmin(admin.ModelAdmin):
 @admin.register(Rating)
 class RatingAdmin(admin.ModelAdmin):
 
-    list_display = ('star', 'movie', 'ip')
+    list_display = ('star', 'product', 'ip')
 
 
 admin.site.register(RatingStar)
