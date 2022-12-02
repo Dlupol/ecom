@@ -45,7 +45,7 @@ class ReviewSerializers(serializers.ModelSerializer):
 
 class ProductDetailSerializers(serializers.ModelSerializer):
 
-    category = serializers.SlugRelatedField(slug_field='name', read_only=True)
+    category = serializers.SlugRelatedField(slug_field='title', read_only=True)
     reviews = ReviewSerializers(many=True)
 
     class Meta:
