@@ -1,8 +1,9 @@
 from django.contrib import admin
-from django.forms import forms
+from django import forms
 from .models import Product
 
-class MovieAdminForm(forms.ModelForm):
+
+class ProductAdminForm(forms.ModelForm):
 
     class Meta:
         model = Product
