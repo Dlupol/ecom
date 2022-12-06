@@ -13,8 +13,8 @@ class ProductAdminForm(forms.ModelForm):
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
 
-    list_display = ('title', 'url')
-    list_display_links = ('title',)
+    list_display = ('category_name', 'url')
+    list_display_links = ('category_name',)
 
 
 class ReviewInLine(admin.ModelAdmin):
