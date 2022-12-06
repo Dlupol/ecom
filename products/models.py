@@ -35,7 +35,7 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     draft = models.BooleanField(default=False)
-    stock = models.IntegerField(default=100, blank=True)
+    stock = models.IntegerField(default=100, blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     author = models.ForeignKey(Author, on_delete=models.CASCADE, null=True)
     url = models.SlugField(max_length=130, unique=True)
