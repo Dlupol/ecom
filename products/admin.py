@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django import forms
-from .models import Product, Category, Review, Rating, RatingStar, Author
+from .models import *
 
 
 class ProductAdminForm(forms.ModelForm):
@@ -47,3 +47,5 @@ class RatingAdmin(admin.ModelAdmin):
 admin.site.register(RatingStar)
 
 admin.site.register(Author)
+admin.site.register(Cart)
+admin.site.register(CartItems)

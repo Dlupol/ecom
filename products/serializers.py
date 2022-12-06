@@ -1,5 +1,11 @@
 from rest_framework import serializers
-from .models import Product, Review, Rating, RatingStar
+from .models import Product, Review, Rating, RatingStar, Cart, CartItems, Category
+
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = '__all__'
 
 
 class FilterReviewListSerializer(serializers.ListSerializer):
@@ -66,3 +72,18 @@ class CreateRatingSerializer(serializers.ModelSerializer):
             defaults={'star': validated_data.get('star')}
         )
         return rating
+
+
+class CartSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Cart
+        fields = '__all__'
+
+
+class CartItemsSerializer(serializers.ModelSerializer):
+    cart = CartSerializer()
+    product = ProductDetailSerializers()
+
+    class Meta:
+        model = CartItems
+        fields = '__all__'

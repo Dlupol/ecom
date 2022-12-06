@@ -1,5 +1,9 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
+from django.utils.text import slugify
+from django.db.models.signals import pre_save, post_save
+from django.dispatch import receiver
 
 
 class Author(models.Model):
@@ -14,6 +18,13 @@ class Category(models.Model):
     title = models.CharField(max_length=100)
     url = models.SlugField(max_length=160, unique=True)
 
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.category_name)
+        super(Category, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.category_name
+
 
 class Product(models.Model):
 
@@ -24,6 +35,7 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     draft = models.BooleanField(default=False)
+    stock = models.IntegerField(default=100, blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     author = models.ForeignKey(Author, on_delete=models.CASCADE, null=True)
     url = models.SlugField(max_length=130, unique=True)
@@ -78,3 +90,31 @@ class Review(models.Model):
     class Meta:
         verbose_name = 'Отзыв'
         verbose_name_plural = 'Отзывы'
+
+
+class Cart(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    ordered = models.BooleanField(default=False)
+    total_price = models.FloatField(default=0)
+
+    def __str__(self):
+        return str(self.user.username) + " " + str(self.total_price)
+
+
+class CartItems(models.Model):
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    price = models.FloatField(default=0)
+    isOrder = models.BooleanField(default=False)
+    quantity = models.IntegerField(default=1)
+
+    def __str__(self):
+        return str(self.user.username) + " " + str(self.product.product_name)
+
+
+@receiver(pre_save, sender=CartItems)
+def correct_price(sender, **kwargs):
+    cart_items = kwargs['instance']
+    price_of_product = Product.objects.get(id=cart_items.product.id)
+    cart_items.price = cart_items.quantity * float(price_of_product.price)
