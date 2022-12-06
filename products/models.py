@@ -15,15 +15,15 @@ class Artist(models.Model):
 
 class Category(models.Model):
 
-    title = models.CharField(max_length=100)
+    category_name = models.CharField(max_length=100)
     url = models.SlugField(max_length=160, unique=True)
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.category_title)
+        self.slug = slugify(self.category_name)
         super(Category, self).save(*args, **kwargs)
 
     def __str__(self):
-        return self.category_title
+        return self.category_name
 
 
 class Product(models.Model):
