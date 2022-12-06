@@ -35,7 +35,7 @@ class ProductAdmin(admin.ModelAdmin):
 class ReviewAdmin(admin.ModelAdmin):
 
     list_display = ('name', 'parent')
-    readonly_fields = ('name', 'email')
+    readonly_fields = ('name', 'parent', 'product')
 
 
 @admin.register(Rating)
