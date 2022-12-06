@@ -20,7 +20,7 @@ def get_client_ip(request):
 
 
 class ProductsViewSet(viewsets.ReadOnlyModelViewSet):
-    filter_backends = (DjangoFilterBackend,)
+    filter_backends = [DjangoFilterBackend]
     filterset_fields = ['category']
 
     def get_queryset(self):
