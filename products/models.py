@@ -6,7 +6,7 @@ from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
 
 
-class Author(models.Model):
+class Artist(models.Model):
 
     first_name = models.CharField(max_length=25)
     last_name = models.CharField(max_length=25)
@@ -36,7 +36,7 @@ class Product(models.Model):
     updated_at = models.DateTimeField(auto_now_add=True)
     draft = models.BooleanField(default=False)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
-    author = models.ForeignKey(Author, on_delete=models.CASCADE, null=True)
+    artist = models.ForeignKey(Artist, on_delete=models.CASCADE, null=True)
     url = models.SlugField(max_length=130, unique=True)
 
     def __str__(self):
