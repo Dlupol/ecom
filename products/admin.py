@@ -46,6 +46,6 @@ class RatingAdmin(admin.ModelAdmin):
 
 admin.site.register(RatingStar)
 
-admin.site.register(Author)
+admin.site.register(Artist)
 admin.site.register(Cart)
 admin.site.register(CartItems)
