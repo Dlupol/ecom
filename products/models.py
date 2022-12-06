@@ -35,7 +35,6 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     draft = models.BooleanField(default=False)
-    in_stock = models.IntegerField(default=100, blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE, null=True)
     url = models.SlugField(max_length=130, unique=True)
