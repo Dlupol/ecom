@@ -37,7 +37,7 @@ class Product(models.Model):
     draft = models.BooleanField(default=False)
     in_stock = models.IntegerField(default=100, blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
-    artist = models.ForeignKey(Author, on_delete=models.CASCADE, null=True)
+    artist = models.ForeignKey(Artist, on_delete=models.CASCADE, null=True)
     url = models.SlugField(max_length=130, unique=True)
 
     def __str__(self):
