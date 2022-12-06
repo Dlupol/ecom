@@ -56,7 +56,7 @@ class ProductDetailSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        exclude = ('draft', 'created_at', 'updated_at',)
+        exclude = ('draft', 'created_at', 'updated_at', 'in_stock')
 
 
 class CreateRatingSerializer(serializers.ModelSerializer):
