@@ -19,11 +19,11 @@ class Category(models.Model):
     url = models.SlugField(max_length=160, unique=True)
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.category_name)
+        self.slug = slugify(self.category_title)
         super(Category, self).save(*args, **kwargs)
 
     def __str__(self):
-        return self.category_name
+        return self.category_title
 
 
 class Product(models.Model):
