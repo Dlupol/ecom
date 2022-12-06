@@ -10,11 +10,7 @@ class ProductAdminForm(forms.ModelForm):
         fields = '__all__'
 
 
-@admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
-
-    list_display = ('category_name', 'url')
-    list_display_links = ('category_name',)
+admin.site.register(Category)
 
 
 class ReviewInLine(admin.ModelAdmin):
