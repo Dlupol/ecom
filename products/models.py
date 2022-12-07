@@ -92,7 +92,7 @@ class Cart(models.Model):
     total_price = models.FloatField(default=0)
 
     def __str__(self):
-        return str(self.user.username) + " " + str(self.total_price)
+        return str(self.user.name) + " " + str(self.total_price)
 
 
 class CartItems(models.Model):
@@ -104,7 +104,7 @@ class CartItems(models.Model):
     quantity = models.IntegerField(default=1)
 
     def __str__(self):
-        return str(self.user.username) + " " + str(self.product.product_name)
+        return str(self.user.name) + " " + str(self.product.product_name)
 
 
 @receiver(pre_save, sender=CartItems)
