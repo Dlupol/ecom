@@ -146,6 +146,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # CORS_ALLOWED_ORIGINS = [
 #     'https://lionfish-app-3rfne.ondigitalocean.app'
 # ]
+AUTH_USER_MODEL = 'users.UserData'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
