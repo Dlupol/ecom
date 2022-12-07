@@ -9,7 +9,7 @@ class RegisterView(APIView):
 
     def post(self, request):
         username = request.data.get('username')
-        password = request.data['password']
+        password = request.data.get('password')
         user = User(username=username)
         user.set_password(password)
         user.save()
