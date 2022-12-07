@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.utils.text import slugify
 from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
+from users.models import UserData
 
 
 class Artist(models.Model):
@@ -86,7 +87,7 @@ class Review(models.Model):
 
 
 class Cart(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(UserData, on_delete=models.CASCADE)
     ordered = models.BooleanField(default=False)
     total_price = models.FloatField(default=0)
 
@@ -96,7 +97,7 @@ class Cart(models.Model):
 
 class CartItems(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(UserData, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     price = models.FloatField(default=0)
     isOrder = models.BooleanField(default=False)
