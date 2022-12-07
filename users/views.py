@@ -8,7 +8,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 class RegisterView(APIView):
 
     def post(self, request):
-        username = request.data.get['username']
+        username = request.data['username']
         password = request.data['password']
         user = User(username=username)
         user.set_password(password)
