@@ -31,6 +31,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE, null=True)
     url = models.SlugField(max_length=130, unique=True)
+    in_stock = models.PositiveIntegerField()
 
     def __str__(self):
         return self.title
