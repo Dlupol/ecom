@@ -7,11 +7,13 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from django.shortcuts import render
 from rest_framework.views import APIView
 from .serializers import UserSerializer
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 
 
 # view for registering users
 class RegisterView(APIView):
+    permission_classes = (AllowAny,)
     allowed_methods = ['GET', 'POST']
 
     def post(self, request):
