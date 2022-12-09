@@ -12,7 +12,7 @@ from rest_framework.response import Response
 
 # view for registering users
 class RegisterView(APIView):
-    allowed_methods = ['get', 'post']
+    allowed_methods = ['GET', 'POST']
 
     def post(self, request):
         serializer = UserSerializer(data=request.data)
