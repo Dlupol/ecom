@@ -14,7 +14,7 @@ from rest_framework.response import Response
 class RegisterView(APIView):
     authentication_classes = ()
     permission_classes = ()
-    allowed_methods = ['get', 'post']
+    allowed_methods = ['post']
 
     def post(self, request):
         serializer = UserSerializer(data=request.data)
