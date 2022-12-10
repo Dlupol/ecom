@@ -6,7 +6,9 @@ from django.contrib.auth.models import User
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.shortcuts import render
 from rest_framework.views import APIView
-from .serializers import UserSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
+
+from .serializers import UserSerializer, CustomTokenObtainPairSerializer
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 
@@ -23,6 +25,8 @@ class RegisterView(APIView):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer
 # class RegisterView(APIView):
 #
 #     def post(self, request):
