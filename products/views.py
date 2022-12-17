@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework import viewsets
+from rest_framework import viewsets, generics
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -84,4 +84,22 @@ class CartView(APIView):
         queryset = CartItems.objects.filter(cart=cart)
         serializer = CartItemsSerializer(queryset, many=True)
         return Response(serializer.data)
+
+
+class ReviewCreateViewSet(viewsets.ModelViewSet):
+
+    serializer_class = ReviewCreateSerializers
+
+
+class AddStarRatingViewSet(viewsets.ModelViewSet):
+
+    serializer_class = CreateRatingSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(ip=get_client_ip(self.request))
+
+
+class CategoryList(generics.ListAPIView):
+    serializer_class = CategorySerializer
+    queryset = Category.objects.all()
 
