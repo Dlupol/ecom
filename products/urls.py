@@ -8,5 +8,5 @@ urlpatterns = format_suffix_patterns([
     path('cart/', CartView.as_view()),
     path('review/', ReviewCreateViewSet.as_view({'post': 'create'})),
     path('rating/', AddStarRatingViewSet.as_view({'post': 'create'})),
-    path('category/', CategoryList.as_view())
+    # path('category/', CategoryList.as_view())
 ])
