@@ -53,14 +53,14 @@ class ProductDetailSerializers(serializers.ModelSerializer):
 
     category = serializers.SlugRelatedField(slug_field='category_name', read_only=True)
     reviews = ReviewSerializers(many=True)
-    rating_user = serializers.BooleanField()
-    middle_star = serializers.IntegerField()
+    # rating_user = serializers.BooleanField()
+    # middle_star = serializers.IntegerField()
 
     class Meta:
         model = Product
-        fields = ['title', 'description', 'image', 'price', 'category', 'artist', 'rating_user', 'middle_star', 'reviews']
+        # fields = ['title', 'description', 'image', 'price', 'category', 'artist', 'rating_user', 'middle_star', 'reviews']
 
-        # exclude = ('draft', 'created_at', 'updated_at', 'in_stock')
+        exclude = ('draft', 'created_at', 'updated_at', 'in_stock')
 
 
 class CreateRatingSerializer(serializers.ModelSerializer):
